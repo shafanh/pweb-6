@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Belajar Form Validation</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url(astro.jpeg); 
+            background-repeat: no-repeat;
+            background-size:cover;
+            height: 100vh;
+            margin: 0; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background-color: whitesmoke;
+            padding: 20px;
+            border-radius: 10px;
+            width: 350px;
+            height: 370px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background-color: #000000;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #313734; 
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .form-control {
+            border: 1px solid #a2beb6;
+        }
+
+        select.form-control {
+            appearance: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form name="formPendaftaran" action="daftar.php" method="post" onsubmit="return validateForm()">
+            <div class="form-group">
+                <label>Nama</label>
+                <input type="text" name="nama" placeholder="Nama lengkap" class="form-control" required maxlength="40" minlength="3">
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Email Aktif" class="form-control">
+                <small id="emailHelp" class="form-text text-muted">Email Akan Digunakan Untuk Mengirimkan Notifikasi.</small>
+            </div>
+            <div class="form-group">
+                <label>Departemen</label>
+                <select name="departemen" class="form-control">
+                        <option value="0">Pilih Departemen</option>
+                        <option value="3">Departemen Teknik Elektro</option>
+                        <option value="1">Departemen Teknik Informatika</option>
+                        <option value="2">Departemen Sistem Informasi</option>
+                        <option value="3">Departemen Teknologi Informasi</option>
+                        <option value="3">Departemen Teknik Komputer</option>
+                        <option value="3">Departemen Teknik Biomedik</option>
+                    </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+    <script>
+        function validateForm() {
+            if (document.forms["formPendaftaran"]["nama"].value == "") {
+                alert("Nama Tidak Boleh Kosong");
+                document.forms["formPendaftaran"]["nama"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["email"].value == "") {
+                alert("Email Tidak Boleh Kosong");
+                document.forms["formPendaftaran"]["email"].focus();
+                return false;
+            }
+            if (document.forms["formPendaftaran"]["departemen"].selectedIndex < 1) {
+                alert("Pilih Departemen.");
+                document.forms["formPendaftaran"]["departemen"].focus();
+                return false;
+            }
+        }
+    </script>
+</body>
+
+</html>
